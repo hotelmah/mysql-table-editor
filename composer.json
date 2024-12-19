@@ -1,0 +1,19 @@
+{
+    "name": "hotelmah/mysql-table-editor",
+    "description": "My SQL Table Editor Web Application/Project. View, Add, Edit, and Delete Records from a MySQL Table in your browser after setting up a per Table configuration.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hotelmah\\MysqlTableEditor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kevin Pereira",
+            "email": "kevin@kevinp.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
