@@ -2,19 +2,16 @@
 
 declare(strict_types=1);
 
-namespace MTE;
+namespace MySQLTableEditor;
 
-require_once("includes/class.mysql.table.editor.php");
-require_once("../ModeliXe/src/ModeliXe.php");
-require_once("includes/function.write.file.php");
-require_once("includes/function.mysql.table.editor.map.data.template.php");
+require_once("vendor/autoload.php");
 
 /* ===================================================================================================================== */
 // Configuration Settings
 /* ===================================================================================================================== */
 
 // Configuration settings not intended for change, but can be
-require_once('includes/include.table.config.php');
+require_once('src/include.table.config.php');
 
 // App Table Name of the Page
 define('APPTITLE', '{text id="AppTitle"}');
@@ -108,6 +105,6 @@ session_start();
 
 /* ===================================================================================================================== */
 
-require_once('includes/include.mysql.table.editor.php');
+require_once('src/include.mysql.table.editor.php');
 
 /* ===================================================================================================================== */

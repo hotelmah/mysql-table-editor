@@ -25,7 +25,7 @@ define('CSSFILENAME', 'mysql.table.editor.fancy.css');
 define('JAVASCRIPTFILENAME', 'mysql.table.editor.js');
 
 // Look in content of other files in current working directory to find MTE tables, to add to drop down, to switch tables
-define('OTHERTABLESEARCHSTRING', "#require_once\('includes/include\.mysql\.table\.editor\.php'\)#");
+define('OTHERTABLESEARCHSTRING', "#require_once\('src/include\.mysql\.table\.editor\.php'\)#");
 
 // CSS Form Fields Add/Edit
 // Not passed into the constructor
