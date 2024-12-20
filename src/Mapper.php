@@ -1,6 +1,8 @@
 <?php
 
-namespace MTE;
+namespace MySQLTableEditor;
+
+// class.mysql.table.editor.map.data.template
 
 class Mapper
 {

@@ -5,15 +5,31 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Hotelmah\\MysqlTableEditor\\": "src/"
+            "MySQLTableEditor\\": "src/"
         }
     },
     "authors": [
         {
             "name": "Kevin Pereira",
-            "email": "kevin@kevinp.net"
+            "email": "kevin@kevinp.net",
+            "homepage": "https://github.com/hotelmah",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/hotelmah/write-file"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/hotelmah/mysqli-wrapper"
+        }
+    ],
+    "require": {
+        "hotelmah/mysqli-wrapper": "dev-main",
+        "hotelmah/modelixe": "dev-main",
+        "hotelmah/write-file": "dev-main"
+    }
 }

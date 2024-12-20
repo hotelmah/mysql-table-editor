@@ -2,25 +2,17 @@
 
 declare(strict_types=1);
 
-namespace MTE;
+namespace MySQLTableEditor;
 
-require_once('includes/class.mysql.table.editor.php');
-require_once('../ModeliXe/src/ModeliXe.php');
-require_once('includes/function.write.file.php');
+require_once('vendor/autoload.php');
 
-use MODELIXE\ModeliXe;
-use MTE\ClsWriteFile;
-
-/* ===================================================================================================================== */
-
-require_once('includes/include.table.config.php');
+use MySQLTableEditor\ClsGetAllTableFileNames;
+use ModeliXe\ModeliXe;
+use WriteFile\ClsWriteFile;
 
 /* ===================================================================================================================== */
 
-class ClsGetAllTableFileNames
-{
-    use GetAllTableFileNames;
-}
+require_once('src/include.table.config.php');
 
 /* ===================================================================================================================== */
 

@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace MTE;
+namespace MySQLTableEditor;
 
-use MODELIXE\ModeliXe;
-use MTE\Mapper;
+use MySQLTableEditor\Mapper;
+use ModeliXe\ModeliXe;
+use WriteFile\ClsWriteFile;
 
 /* ===================================================================================================================== */
 

@@ -1,10 +1,11 @@
 <?php
 
-namespace MTE;
+namespace MySQLTableEditor;
 
-require_once('../../PHP-Testing/Includes/class.db.mysqli.kapnet.php');
+use MySQLi\ClsDataBaseWrapperMTE;
+use MySQLTableEditor\TraitGetAllTableFileNames;
 
-use KAPNET\ClsDataBaseMySqliKapnet;
+// class.mysql.table.editor
 
 /* ===================================================================================================================== */
 
@@ -34,7 +35,7 @@ if (strtolower(basename($_SERVER['PHP_SELF'])) == strtolower(basename(__FILE__))
 
 class ClsMySQLTableEditor
 {
-    use GetAllTableFileNames;
+    use TraitGetAllTableFileNames;
     use Languages;
 
     private string $version;
@@ -116,7 +117,7 @@ class ClsMySQLTableEditor
 
         /* ===================================================================================================================== */
 
-        $this->mysqli = new ClsDataBaseMySqliKapnet();
+        $this->mysqli = new ClsDataBaseWrapperMTE();
 
         /* ===================================================================================================================== */
         if (!empty($TempTableName)) {
@@ -826,43 +827,6 @@ class ClsMySQLTableEditor
     public function getQueryErrorMessage(): string
     {
         return $this->mysqli->queryGetErrorMessage();
-    }
-}
-
-/* ===================================================================================================================== */
-/* ===================================================================================================================== */
-
-//phpcs:ignore
-trait GetAllTableFileNames
-{
-    public function getAllTableFileNames(string $TempCurrentWorkDir, string $TempSearchString, bool $TempRemoveExtension = false): array
-    {
-        $TempAryWholeDirectory = array();
-        $TempAryValidFiles = array();
-        $TempAryMTEFiles = array();
-
-        $TempAryWholeDirectory = array_slice(array_diff(scandir($TempCurrentWorkDir), array('..', '.', '.DS_Store')), 0);
-
-        foreach ($TempAryWholeDirectory as $TempAryDirectoryItem) {
-            if (preg_match('/(.*(\.php))$/', $TempAryDirectoryItem)) {
-                array_push($TempAryValidFiles, $TempAryDirectoryItem);
-            }
-        }
-
-        foreach ($TempAryValidFiles as $TempAryValidFile) {
-            if (preg_match($TempSearchString, file_get_contents($TempAryValidFile))) {
-                if ($TempRemoveExtension) {
-                    array_push($TempAryMTEFiles, explode('.', $TempAryValidFile)[0]);
-                } else {
-                    array_push($TempAryMTEFiles, $TempAryValidFile);
-                }
-            }
-        }
-
-        unset($TempAryWholeDirectory);
-        unset($TempAryValidFiles);
-
-        return array_combine($TempAryMTEFiles, $TempAryMTEFiles);
     }
 }
 
