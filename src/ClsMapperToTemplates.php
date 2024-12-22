@@ -4,7 +4,7 @@ namespace MySQLTableEditor;
 
 // class.mysql.table.editor.map.data.template
 
-class Mapper
+class ClsMapperToTemplates
 {
     public static function mapTableEditorHtmlDataToTemplate(object $TempTableEditor, object &$TempTemplate_html): void
     {

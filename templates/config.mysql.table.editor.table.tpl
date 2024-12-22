@@ -6,12 +6,15 @@ namespace MySQLTableEditor;
 
 require_once("vendor/autoload.php");
 
+use MySQLTableEditor\ClsIncludeTableConfig;
+use MySQLTableEditor\ClsIncludeMySQLTableEditor;
+
 /* ===================================================================================================================== */
 // Configuration Settings
 /* ===================================================================================================================== */
 
 // Configuration settings not intended for change, but can be
-require_once('src/include.table.config.php');
+ClsIncludeTableConfig::setConfigSettingsCommon();
 
 // App Table Name of the Page
 define('APPTITLE', '{text id="AppTitle"}');
@@ -105,6 +108,6 @@ session_start();
 
 /* ===================================================================================================================== */
 
-require_once('src/include.mysql.table.editor.php');
+ClsIncludeMySQLTableEditor::executeMySQLTableEditor();
 
 /* ===================================================================================================================== */

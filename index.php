@@ -7,12 +7,13 @@ namespace MySQLTableEditor;
 require_once('vendor/autoload.php');
 
 use MySQLTableEditor\ClsGetAllTableFileNames;
+use MySQLTableEditor\ClsIncludeTableConfig;
 use ModeliXe\ModeliXe;
 use WriteFile\ClsWriteFile;
 
 /* ===================================================================================================================== */
 
-require_once('src/include.table.config.php');
+ClsIncludeTableConfig::setConfigSettingsCommon();
 
 /* ===================================================================================================================== */
 
