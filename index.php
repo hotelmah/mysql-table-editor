@@ -25,12 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if ((count($ValidTables) > 0) && !isset($_GET['AddTable']) && !isset($_GET['EditConfig'])) {
         header("location:" . current(array_slice($ValidTables, 0, 1, true)));
     } elseif ((!isset($_GET['AddTable']) || ($_GET['AddTable'] == 'yes')) && !isset($_GET['EditConfig'])) {
-        $Action = dirname(__DIR__);
-        $html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . "/" . "form.add.table.mysql.table.editor.tpl", '', '', -1, false);
+        $html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . "form.add.table.mysql.table.editor.tpl", '', '', -1, false);
 
         $html->setModeliXe();
 
-        $html->mxText("Title", "MySQLTableEditor v2 Add/Edit Table");
+        $html->mxText("Title", "MySQLTableEditor v2 Add Table");
         $html->mxText("url_base", URLBASE);
         $html->mxText("CSSDirName", CSSDIRNAME);
         $html->mxText("CSSFileName", CSSFILENAME);
@@ -49,11 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         if (file_exists($_GET['EditConfig'])) {
             $RequestedTable = file_get_contents($_GET['EditConfig']);
 
-            $html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . "/" . "form.edit.table.mysql.table.editor.tpl", '', '', -1, false);
+            $html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . "form.edit.table.mysql.table.editor.tpl", '', '', -1, false);
 
             $html->setModeliXe();
 
-            $html->mxText("Title", "MySQLTableEditor v2 Add/Edit Table");
+            $html->mxText("Title", "MySQLTableEditor v2 Edit Table");
             $html->mxText("url_base", URLBASE);
             $html->mxText("CSSDirName", CSSDIRNAME);
             $html->mxText("CSSFileName", CSSFILENAME);
@@ -66,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             $html->mxWrite(false);
             unset($html);
         } else {
-            echo "File does not exist.";
+            echo "<h2>File does not exist.</h2>";
         }
     }
 
@@ -99,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             return "'" . trim($x) . "'";
         }, $ShowTextListViewAry));
 
-        $html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . "/" . "config.mysql.table.editor.table.tpl", '', '', -1, false);
+        $html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . "config.mysql.table.editor.table.tpl", '', '', -1, false);
 
         $html->setModeliXe();
 
@@ -121,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
         unset($TableFile);
         unset($html);
-        echo "<h2>File Written. Refresh does not work. Reload the App to redirect to the new table. If a mistake was made, manually edit you Table config file.<h2>";
+        echo "<h2>File Written. Refresh does not work. Reload the App to redirect to the new table. If a mistake was made, manually edit you Table config file.</h2>";
     } elseif (isset($_POST['FrmEditTable'])) {
         file_put_contents($_POST['TableName'], $_POST['EditConfigTable']);
         header('location:' . $_SERVER['SCRIPT_NAME']);

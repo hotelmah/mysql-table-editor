@@ -6,6 +6,7 @@ use MySQLi\ClsDataBaseWrapperMTE;
 use MySQLTableEditor\TraitGetAllTableFileNames;
 
 // class.mysql.table.editor
+// cSpell:disable
 
 /* ===================================================================================================================== */
 
@@ -75,7 +76,7 @@ class ClsMySQLTableEditor
     public string $width_textarea_fields;
     public string $height_textarea_fields;
 
-    # warning no .htacces ('on' or 'off')
+    # warning no .htaccess ('on' or 'off')
     public string $htaccess_warning;
     public string $htaccess_warning_result;
 

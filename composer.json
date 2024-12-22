@@ -1,7 +1,7 @@
 {
     "name": "hotelmah/mysql-table-editor",
     "type": "project",
-    "description": "MySQL Table Editor Web Application/Project. View, Add, Edit, and Delete Records from multiple MySQL Tables in your browser after setting up a per Table configuration. Specify what fields to see and what fields are required for add/edit. Enjoy a fancy CSS.",
+    "description": "MySQL Table Editor Web Application/Project. Add, View, Edit, and Delete (CRUD) records from one table at a time. Switch to other MySQL Tables in your browser. First, set up a per Table Configuration for each table. Specify what fields to see and what fields are required for add/edit. Enjoy a fancy CSS.",
     "keywords": ["MySQL","Editor", "App", "CRUD", "PHP"],
     "homepage": "https://github.com/hotelmah/mysql-table-editor",
     "license": "MIT",

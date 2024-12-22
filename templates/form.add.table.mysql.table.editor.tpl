@@ -61,19 +61,19 @@
                     <input id="PrimaryKey" name="PrimaryKey" type="text" required />
                 </div>
                 <div>
-                    <label for="FieldsinListView">Fields you want to see in list view (always add the Primary Key, seperate by comma): </label>
+                    <label for="FieldsinListView">Fields you want to see in list view (always add the Primary Key, separate by comma): </label>
                     <input id="FieldsinListView" name="FieldsinListView" type="text" required />
                 </div>
                 <div>
-                    <label for="FieldsRequired">Fields required in edit or add record view. Always exclude the Primary Key since that is auto incremented. For simplicity, copy the fields from above. Seperate each field with a comma: </label>
+                    <label for="FieldsRequired">Fields required in edit or add record view. Always exclude the Primary Key since that is auto incremented. For simplicity, copy the fields from above. Separate each field with a comma: </label>
                     <input id="FieldsRequired" name="FieldsRequired" type="text" required />
                 </div>
                 <div>
-                    <label for="ShowTextAddEdit">Visable name of fields in edit or add record view (seperate by comma). The input above is the field names in the database. Here, how do you want to present those field names? For simplicity, copy the fields names from above: </label>
+                    <label for="ShowTextAddEdit">Visible name of fields in edit or add record view (separate by comma). The input above is the field names in the database. Here, how do you want to present those field names? For simplicity, copy the fields names from above: </label>
                     <input id="ShowTextAddEdit" name="ShowTextAddEdit" type="text" required />
                 </div>
                 <div>
-                    <label for="ShowTextListView">Visable name of fields in list view (seperate by comma). For simplicity, copy the same fields names from above: </label>
+                    <label for="ShowTextListView">Visible name of fields in list view (separate by comma). For simplicity, copy the same fields names from above: </label>
                     <input id="ShowTextListView" name="ShowTextListView" type="text" required />
                 </div>
             </fieldset>

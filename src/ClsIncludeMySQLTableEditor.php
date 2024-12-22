@@ -17,9 +17,9 @@ class ClsIncludeMySQLTableEditor
         /* ===================================================================================================================== */
 
         $MySQLTableEditor = new ClsMySQLTableEditor(TABLENAME, PRIMARYKEY, FIELDSINLISTVIEW, APPTITLE, LANGUAGE, NUMBERROWSINLISTVIEW, FIELDSREQUIRED, FIELDSTOEDIT, FIELDHELPTEXTS, SHOWTEXTADDEDIT, SHOWTEXTLISTVIEW, LOOKUPTABLE, $_SERVER['SCRIPT_NAME'], IMAGESDIRNAME, URLBASE, HIDEFILENAMEEXTENSION);
-        $MySQLTableEditor_html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . "/" . "mysql.table.editor.tpl", '', '', -1, false);
-        $MySQLTableEditor_css = new ModeliXe(URLBASE . TEMPLATEDIRNAME . "/" . CSSFILENAME . ".tpl", '', '', -1, false);
-        $MySQLTableEditor_javascript = new ModeliXe(URLBASE . TEMPLATEDIRNAME . "/" . JAVASCRIPTFILENAME . ".tpl", '', '', -1, false);
+        $MySQLTableEditor_html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . "mysql.table.editor.tpl", '', '', -1, false);
+        $MySQLTableEditor_css = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . CSSFILENAME . ".tpl", '', '', -1, false);
+        $MySQLTableEditor_javascript = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . JAVASCRIPTFILENAME . ".tpl", '', '', -1, false);
 
         /* ===================================================================================================================== */
 
@@ -31,7 +31,7 @@ class ClsIncludeMySQLTableEditor
 
         $MySQLTableEditor_css_file = new ClsWriteFile();
         $MySQLTableEditor_css_file->saveData($MySQLTableEditor_css->mxWrite(true), false);
-        $MySQLTableEditor_css_file->write(URLBASE . CSSDIRNAME . "/" . CSSFILENAME);
+        $MySQLTableEditor_css_file->write(URLBASE . CSSDIRNAME . DIRECTORY_SEPARATOR . CSSFILENAME);
 
         unset($MySQLTableEditor_css_file);
         unset($MySQLTableEditor_css);
@@ -42,7 +42,7 @@ class ClsIncludeMySQLTableEditor
 
         $MySQLTableEditor_javascript_file = new ClsWriteFile();
         $MySQLTableEditor_javascript_file->saveData($MySQLTableEditor_javascript->mxWrite(true), false);
-        $MySQLTableEditor_javascript_file->write(URLBASE . JAVASCRIPTDIRNAME . "/" . JAVASCRIPTFILENAME);
+        $MySQLTableEditor_javascript_file->write(URLBASE . JAVASCRIPTDIRNAME . DIRECTORY_SEPARATOR . JAVASCRIPTFILENAME);
 
         unset($MySQLTableEditor_javascript_file);
         unset($MySQLTableEditor_javascript);

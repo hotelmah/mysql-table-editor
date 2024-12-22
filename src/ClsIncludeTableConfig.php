@@ -28,7 +28,7 @@ class ClsIncludeTableConfig
         define('TEMPLATEDIRNAME', 'templates');
         define('IMAGESDIRNAME', 'images');
 
-        // Read from template, populate variables, and write CSS and Javascript files to disk everytime
+        // Read from template, populate variables, and write CSS and Javascript files to disk every time
         define('CSSFILENAME', 'mysql.table.editor.fancy.css');
         define('JAVASCRIPTFILENAME', 'mysql.table.editor.js');
 
