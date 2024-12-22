@@ -69,4 +69,4 @@ There are a few items that can use improvement:
 
 
 ## License
-- GNU GENERAL PUBLIC LICENSE, Version 3.
+- MIT License.
