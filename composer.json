@@ -1,7 +1,9 @@
 {
     "name": "hotelmah/mysql-table-editor",
-    "description": "MySQL Table Editor Web Application/Project. View, Add, Edit, and Delete Records from multiple MySQL Tables in your browser after setting up a per Table configuration. Specify what fields to see and what fields are required for add/edit. Enjoy a fancy CSS.",
     "type": "project",
+    "description": "MySQL Table Editor Web Application/Project. View, Add, Edit, and Delete Records from multiple MySQL Tables in your browser after setting up a per Table configuration. Specify what fields to see and what fields are required for add/edit. Enjoy a fancy CSS.",
+    "keywords": ["MySQL","Editor", "App", "CRUD", "PHP"],
+    "homepage": "https://github.com/hotelmah/mysql-table-editor",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -11,9 +13,9 @@
     "require": {
         "php": ">=7.0.0",
         "ext-mysqli": ">=8.0.0",
-        "hotelmah/mysqli-wrapper": "dev-main",
-        "hotelmah/modelixe": "dev-main",
-        "hotelmah/write-file": "dev-main"
+        "hotelmah/mysqli-wrapper": "^v1.0",
+        "hotelmah/modelixe": "^v2.0",
+        "hotelmah/write-file": "^v1.0"
     },
     "authors": [
         {

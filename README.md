@@ -44,9 +44,12 @@ This project does have 3x dependencies, which are listed below.
 - run this command in your project root:
 
 `
-composer create-project hotelmah/mysql-table-editor
+composer create-project hotelmah/mysql-table-editor .
 `
 
+- NOTE: include the "." at the end. This will install the package in the current folder.
+- Alternatively, you can change the "." to a folder name and the package will be installed in that sub folder.
+- NOTE: Installing as a library using the require keyword does not work because the index.php and html assets are buired inside the vendor folder. I can use help to figure out a way to have the assets and index.php file populate in the project root folder like the create-project keyword does.
 - There is no need to manually create/update a composer.json file in your project root since this command does it automatically.
 - The package is listed on Packagist, but is hosted on GitHub where the source is pulled from.
 - See setup section above.
@@ -69,4 +72,4 @@ There are a few items that can use improvement:
 
 
 ## License
-- GNU GENERAL PUBLIC LICENSE, Version 3.
+- MIT License.
