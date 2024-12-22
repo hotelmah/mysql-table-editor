@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
         unset($TableFile);
         unset($html);
-        echo "<h2>File Written. Press Refresh to check and or load.<h2>";
+        echo "<h2>File Written. Refresh does not work. Reload the App to redirect to the new table. If a mistake was made, manually edit you Table config file.<h2>";
     } elseif (isset($_POST['FrmEditTable'])) {
         file_put_contents($_POST['TableName'], $_POST['EditConfigTable']);
         header('location:' . $_SERVER['SCRIPT_NAME']);
