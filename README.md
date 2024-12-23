@@ -9,6 +9,7 @@ This project does have 3x dependencies, which are listed below.
 
 ## Notice
 - There is no built-in authentication mechanism. Thus, please ensure such mechanism is in place.
+- The CSS and Javascript files are rewritten to disk on every refresh. This is not very efficient, but useful if you edit the table config file via the main screen.
 
 
 ## Screenshot
@@ -92,6 +93,7 @@ composer create-project hotelmah/mysql-table-editor .
 - If packaged as a library, how can I encapsulate the HTML templates and other assets such that they can be called from the vendor src folder or be used in a MVC pattern?
 - Checking for proper design such that this project is effective in an MVC or framework construct.
 - I would like to integrate SQLite3 into this project since I already have a SQLite3 wrapper library.
+- Update the CSS and Javascript writing to disk every time so that it is more efficient.
 
 
 ## License

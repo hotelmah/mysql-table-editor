@@ -197,7 +197,7 @@ body {
 
 /* ===================================================================================================================== */
 
-.AddButton, .OkayGoButton, .ClearSearch, .GoBackButton {
+.AddButton, .OkayGoButton, .GoBackButton {
     width: 45px !important;
     height: 31px !important;
 
@@ -206,6 +206,13 @@ body {
 
 .AddButton, .GoBackButton {
     width: 145px !important;
+}
+
+.ClearSearch {
+    width: 8em !important;
+    height: 32px !important;
+
+    border: 1px solid darkorchid;
 }
 
 .AddButton:hover, .OkayGoButton:hover, .ClearSearch:hover, .GoBackButton:hover, .FrmEditButtons:hover {
