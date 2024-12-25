@@ -647,7 +647,11 @@ class ClsMySQLTableEditor
                         $readonly = 'readonly';
                     }
 
-                    $value_htmlentities = htmlentities($value, ENT_QUOTES, "UTF-8");
+                    if ($value == null) {
+                        $value_htmlentities = '';
+                    } else {
+                        $value_htmlentities = htmlentities($value, ENT_QUOTES, "UTF-8");
+                    }
 
                     if (!$this->edit && $key == $this->primary_key) {
                         $field = "<input type='hidden' name='$key' value=''>[auto increment]";
@@ -694,7 +698,7 @@ class ClsMySQLTableEditor
             }
 
             # make table row
-            if ($this->show_text_AddEdit[$key]) {
+            if (isset($this->show_text_AddEdit[$key])) {
                 $show_key = $this->show_text_AddEdit[$key];
             } else {
                 $show_key = $key;

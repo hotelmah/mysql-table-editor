@@ -61,11 +61,11 @@
                     <input id="PrimaryKey" name="PrimaryKey" type="text" required />
                 </div>
                 <div>
-                    <label for="FieldsinListView">Fields you want to see in list view (always add the Primary Key, separate by comma): </label>
+                    <label for="FieldsinListView">Fields you want to see in list view. <strong>*Please add the Primary Key*</strong>, (separate by comma): </label>
                     <input id="FieldsinListView" name="FieldsinListView" type="text" required />
                 </div>
                 <div>
-                    <label for="FieldsRequired">Fields required in edit or add record view. Always exclude the Primary Key since that is auto incremented. For simplicity, copy the fields from above. Separate each field with a comma: </label>
+                    <label for="FieldsRequired">Fields required in edit or add record view. Always <strong>exclude the Primary Key</strong> since that is auto incremented. For simplicity, copy the fields from above. Separate each field with a comma: </label>
                     <input id="FieldsRequired" name="FieldsRequired" type="text" required />
                 </div>
                 <div>
@@ -73,7 +73,7 @@
                     <input id="ShowTextAddEdit" name="ShowTextAddEdit" type="text" required />
                 </div>
                 <div>
-                    <label for="ShowTextListView">Visible name of fields in list view (separate by comma). For simplicity, copy the same fields names from above: </label>
+                    <label for="ShowTextListView">Visible name of fields in list view (separate by comma). <strong>*Be sure to add the Primary Key.*</strong> For simplicity, copy the same fields names from the "Fields you want to see in list view": </label>
                     <input id="ShowTextListView" name="ShowTextListView" type="text" required />
                 </div>
             </fieldset>

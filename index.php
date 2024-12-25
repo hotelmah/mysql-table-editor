@@ -90,12 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
         $ShowTextAddEditAry = explode(',', $ShowTextAddEdit);
         $ShowTextAddEdit = implode(', ', array_map(function ($x) {
-            return "'" . trim($x) . "'";
+            return "'" . trim($x) . "'" . " => " . "'" . trim($x) . "'";
         }, $ShowTextAddEditAry));
 
         $ShowTextListViewAry = explode(',', $ShowTextListView);
         $ShowTextListView = implode(', ', array_map(function ($x) {
-            return "'" . trim($x) . "'";
+            return "'" . trim($x) . "'" . " => " . "'" . trim($x) . "'";
         }, $ShowTextListViewAry));
 
         $html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . "config.mysql.table.editor.table.tpl", '', '', -1, false);

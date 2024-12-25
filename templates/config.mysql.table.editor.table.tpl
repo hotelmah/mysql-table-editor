@@ -47,35 +47,19 @@ define('TABLENAME', '{text id="TableName"}');
 define('PRIMARYKEY', '{text id="PrimaryKey"}');
 
 // Fields you want to see in "list view". Always add the primary key
-define('FIELDSINLISTVIEW', array('NewsID', 'Status', 'Website', 'Topic', 'News', 'DateDisplay', 'DateTimeServer'));
+define('FIELDSINLISTVIEW', array({text id="FieldsinListView"}));
 
 // Required fields in edit or add record
-define('FIELDSREQUIRED', array('Status', 'Website', 'Topic', 'News', 'DateDisplay'));
+define('FIELDSREQUIRED', array({text id="FieldsRequired"}));
 
 // Fields you want to edit (make empty this to edit all the fields)
 define('FIELDSTOEDIT', array());
 
 // Visible name of fields in Add/Edit View
-define('SHOWTEXTADDEDIT', array(
-    'NewsID' => 'NewsID',
-    'Status' => 'Status',
-    'Website' => 'Website',
-    'Topic' => 'Topic',
-    'News' => 'News',
-    'DateDisplay' => 'DateDisplay',
-    'DateTimeServer' => 'DateTimeServer'
-));
+define('SHOWTEXTADDEDIT', array({text id="ShowTextAddEdit"}));
 
 // Visible name of the fields in List View
-define('SHOWTEXTLISTVIEW', array(
-    'NewsID' => 'NewsID',
-    'Status' => 'Status',
-    'Website' => 'Website',
-    'Topic' => 'Topic',
-    'News' => 'News',
-    'DateDisplay' => 'DateDisplay',
-    'DateTimeServer' => 'DateTimeServer'
-));
+define('SHOWTEXTLISTVIEW', array({text id="ShowTextListView"}));
 
 /* ===================================================================================================================== */
 // Optional Settings
