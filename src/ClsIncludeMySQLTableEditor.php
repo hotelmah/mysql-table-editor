@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace MySQLTableEditor;
 
+date_default_timezone_set("America/Chicago");
+
 use MySQLTableEditor\ClsMapperToTemplates;
 use ModeliXe\ModeliXe;
 use WriteFile\ClsWriteFile;
 
 // include.mysql.table.editor
-
 class ClsIncludeMySQLTableEditor
 {
     public static function executeMySQLTableEditor(): void
     {
         /* ===================================================================================================================== */
 
-        $MySQLTableEditor = new ClsMySQLTableEditor(TABLENAME, PRIMARYKEY, FIELDSINLISTVIEW, APPTITLE, LANGUAGE, NUMBERROWSINLISTVIEW, FIELDSREQUIRED, FIELDSTOEDIT, FIELDHELPTEXTS, SHOWTEXTADDEDIT, SHOWTEXTLISTVIEW, LOOKUPTABLE, $_SERVER['SCRIPT_NAME'], IMAGESDIRNAME, URLBASE, HIDEFILENAMEEXTENSION);
+        $MySQLTableEditor = new ClsMySQLTableEditor(TABLENAME, PRIMARYKEY, FIELDSINLISTVIEW, APPTITLE, LANGUAGE, NUMBERROWSINLISTVIEW, FIELDSREQUIRED, FIELDSTONOTEDIT, FIELDHELPTEXTS, SHOWTEXTADDEDIT, SHOWTEXTLISTVIEW, LOOKUPTABLE, $_SERVER['SCRIPT_NAME'], IMAGESDIRNAME, URLBASE, HIDEFILENAMEEXTENSION);
         $MySQLTableEditor_html = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . "mysql.table.editor.tpl", '', '', -1, false);
         $MySQLTableEditor_css = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . CSSFILENAME . ".tpl", '', '', -1, false);
         $MySQLTableEditor_javascript = new ModeliXe(URLBASE . TEMPLATEDIRNAME . DIRECTORY_SEPARATOR . JAVASCRIPTFILENAME . ".tpl", '', '', -1, false);

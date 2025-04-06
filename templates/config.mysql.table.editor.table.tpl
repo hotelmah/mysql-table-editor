@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MySQLTableEditor;
 
+date_default_timezone_set("America/Chicago");
+
 require_once("vendor/autoload.php");
 
 use MySQLTableEditor\ClsIncludeTableConfig;
@@ -52,8 +54,8 @@ define('FIELDSINLISTVIEW', array({text id="FieldsinListView"}));
 // Required fields in edit or add record
 define('FIELDSREQUIRED', array({text id="FieldsRequired"}));
 
-// Fields you want to edit (make empty this to edit all the fields)
-define('FIELDSTOEDIT', array());
+// Fields you DO NOT want to edit, but shows. Consequently, these fields are not submitted for update or saved or allowed to input on add
+define('FIELDSTONOTEDIT', array());
 
 // Visible name of fields in Add/Edit View
 define('SHOWTEXTADDEDIT', array({text id="ShowTextAddEdit"}));

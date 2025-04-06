@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MySQLTableEditor;
 
+date_default_timezone_set("America/Chicago");
+
 // trait.get.all.table.file.names
+/* ===================================================================================================================== */
 
 trait TraitGetAllTableFileNames
 {
@@ -36,3 +41,5 @@ trait TraitGetAllTableFileNames
         return array_combine($TempAryMTEFiles, $TempAryMTEFiles);
     }
 }
+
+/* ===================================================================================================================== */

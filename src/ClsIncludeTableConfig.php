@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MySQLTableEditor;
+
+date_default_timezone_set("America/Chicago");
 
 // include.table.config
 

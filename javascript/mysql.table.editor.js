@@ -20,7 +20,7 @@ window.onload = () => {
 
 function del_confirm(id) {
     if (confirm('Delete record NewsID ' + id + '...?')) {
-        window.location='TableNews.php?&start=0&ad=&sort=&s=&f=&mte_a=del&id=' + id
+        window.location='TableNews.php?&start=18&ad=&sort=&s=&f=&mte_a=del&id=' + id
     }
 }
 

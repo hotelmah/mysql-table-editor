@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MySQLTableEditor;
+
+date_default_timezone_set("America/Chicago");
 
 // class.mysql.table.editor.map.data.template
 
@@ -114,7 +118,7 @@ class ClsMapperToTemplates
             $TempTemplate_html->mxText("BlocContentMessages.BlocContentDeleted.ShowTextAddEditPrimaryKey", (isset($TempTableEditor->show_text_AddEdit[$TempTableEditor->primary_key]) ? $TempTableEditor->show_text_AddEdit[$TempTableEditor->primary_key] : $TempTableEditor->primary_key));
             $TempTemplate_html->mxText("BlocContentMessages.BlocContentDeleted.DeleteID", $TempTableEditor->content_deleted);
             $TempTemplate_html->mxText("BlocContentMessages.BlocContentDeleted.textDeleted", $TempTableEditor->getText('Deleted'));
-        } elseif (!empty($TempTableEditor->content_saved)) {
+        } elseif ($TempTableEditor->content_saved != 0) {
             $TempTemplate_html->mxBloc("BlocContentMessages", "modify", URLBASE . TEMPLATEDIRNAME . "/" . "mysql.table.editor.messages.tpl");
             $TempTemplate_html->mxBloc("BlocContentMessages.BlocContentError", "dele");
             $TempTemplate_html->mxBloc("BlocContentMessages.BlocContentDeleted", "dele");

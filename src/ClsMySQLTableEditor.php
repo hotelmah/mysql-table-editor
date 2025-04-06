@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MySQLTableEditor;
+
+date_default_timezone_set("America/Chicago");
 
 use MySQLi\ClsDataBaseWrapperMTE;
 use MySQLTableEditor\TraitGetAllTableFileNames;
@@ -52,7 +56,6 @@ class ClsMySQLTableEditor
 
     # the fields you want to see in "list view"
     public array $fields_in_list_view;
-    public bool $edit_all;
 
     # numbers of rows/records in "list view"
     public int $num_rows_list_view;
@@ -61,7 +64,7 @@ class ClsMySQLTableEditor
     public array $fields_required;
 
     # Fields you want to edit:
-    public array $fields_to_edit;
+    public array $fields_to_not_edit;
 
     # help text
     public array $help_text;
@@ -87,7 +90,7 @@ class ClsMySQLTableEditor
     public string $url_script_base;
     private string $ImagesDirName;
 
-    public string $content_saved;
+    public int $content_saved;
     public string $content_deleted;
     public string $content_error;
 
@@ -110,7 +113,7 @@ class ClsMySQLTableEditor
     public string $RecordAddSaveScript;
 
     /* ===================================================================================================================== */
-    public function __construct(string $TempTableName, string $TempTablePrimaryKey, array $TempFieldsInListView, string $TempAppTitle, string $TempLanguage, int $TempNumberRowsInListView, array $TempFieldsRequired, array $TempFieldsToEdit, array $TempFieldHelpTexts, array $TempShowTextAddEdit, array $TempShowTextListView, array $TempLookupTable, string $TempScriptName, string $TempImagesDirName, string $TempURLBase = './', bool $TempHideFileNameExt = false)
+    public function __construct(string $TempTableName, string $TempTablePrimaryKey, array $TempFieldsInListView, string $TempAppTitle, string $TempLanguage, int $TempNumberRowsInListView, array $TempFieldsRequired, array $TempFieldsToNotEdit, array $TempFieldHelpTexts, array $TempShowTextAddEdit, array $TempShowTextListView, array $TempLookupTable, string $TempScriptName, string $TempImagesDirName, string $TempURLBase = './', bool $TempHideFileNameExt = false)
     {
         /* ===================================================================================================================== */
 
@@ -200,10 +203,10 @@ class ClsMySQLTableEditor
 
         /* ===================================================================================================================== */
 
-        if (is_array($TempFieldsToEdit) && count($TempFieldsToEdit) > 0) {
-            $this->fields_to_edit = $TempFieldsToEdit;
+        if (is_array($TempFieldsToNotEdit) && count($TempFieldsToNotEdit) > 0) {
+            $this->fields_to_not_edit = $TempFieldsToNotEdit;
         } else {
-            $this->fields_to_edit = array();
+            $this->fields_to_not_edit = array();
         }
 
         /* ===================================================================================================================== */
@@ -240,22 +243,13 @@ class ClsMySQLTableEditor
 
         /* ===================================================================================================================== */
 
-        $this->edit_all = true;
-
-        // Don't edit everything if fields_to_edit is array
-        if (is_array($this->fields_to_edit) && count($this->fields_to_edit) > 0) {
-            $this->edit_all = false;
-        }
-
-        /* ===================================================================================================================== */
-
-            $this->url_base = $TempURLBase;
-            $this->ImagesDirName = $TempImagesDirName;
+        $this->url_base = $TempURLBase;
+        $this->ImagesDirName = $TempImagesDirName;
 
         /* ===================================================================================================================== */
 
         $this->content_deleted = '';
-        $this->content_saved = '';
+        $this->content_saved = 0;
         $this->content_error = '';
 
         $this->last_page_html = '';
@@ -342,14 +336,14 @@ class ClsMySQLTableEditor
         if ($_GET['mte_a'] == 'edit') {
             $this->show_add_edit_html = true;
             $this->edit = true;
-            $this->editRec($_GET['id']);
+            $this->editRec(intval($_GET['id']));
         } elseif ($_GET['mte_a'] == 'new') {
             $this->show_add_edit_html = true;
             $this->editRec(0);
         } elseif ($_GET['mte_a'] == 'del') {
             $this->delRec($_GET['id']);
         } elseif ($_POST['mte_a'] == 'save') {
-            $this->esaveRec($_POST['mte_new_rec']);
+            $this->esaveRec(intval($_POST['mte_new_rec']));
         } else {
             $this->showList();
         }
@@ -377,7 +371,7 @@ class ClsMySQLTableEditor
 
         # message after add or edit
         if (isset($_SESSION['content_saved'])) {
-            $this->content_saved = $_SESSION['content_saved'];
+            $this->content_saved = intval($_SESSION['content_saved']);
             $this->RecordAddSaveScript = '';
             unset($_SESSION['content_saved']);
         }
@@ -588,10 +582,6 @@ class ClsMySQLTableEditor
 
         /* ===================================================================================================================== */
         foreach ($rij as $key => $value) {
-            if ($this->edit_all) {
-                $this->fields_to_edit[] = $key;
-            }
-
             if (!$this->edit) {
                 $value = '';
             }
@@ -642,13 +632,15 @@ class ClsMySQLTableEditor
             } elseif (!preg_match("/blob/", $field_kind)) {
                 # input
                 if (preg_match("/\(*(.*)\)*/", $field_kind, $matches)) {
-                    if ($key == $this->primary_key) {
+                    if (($key == $this->primary_key) || (in_array($key, $this->fields_to_not_edit, true))) {
                         $style = "style='background: grey'";
                         $readonly = 'readonly';
                     }
 
                     if ($value == null) {
                         $value_htmlentities = '';
+                    } elseif (($key == $this->primary_key)) {
+                        $value_htmlentities = $value;
                     } else {
                         $value_htmlentities = htmlentities($value, ENT_QUOTES, "UTF-8");
                     }
@@ -704,9 +696,7 @@ class ClsMySQLTableEditor
                 $show_key = $key;
             }
 
-            if ($key == $this->primary_key || in_array($key, $this->fields_to_edit, true)) {
-                $this->rows .= "\n<tr>\n\t<td class='AddEditFieldNameColumn'>" . $show_key . "</td>\n\t<td class='AddEditFieldValueColumn'>" . $field . "</td>\n\t<td class='AddEditHelpTextColumn'>" . (isset($this->help_text[$key]) ? $this->help_text[$key] : "[Help Key Not Set]")  . "</td>\n</tr>";
-            }
+            $this->rows .= "\n<tr>\n\t<td class='AddEditFieldNameColumn'>" . $show_key . "</td>\n\t<td class='AddEditFieldValueColumn'>" . $field . "</td>\n\t<td class='AddEditHelpTextColumn'>" . (isset($this->help_text[$key]) ? $this->help_text[$key] : "[Help Key Not Set]")  . "</td>\n</tr>";
         }
     }
     /* ===================================================================================================================== */
@@ -727,16 +717,16 @@ class ClsMySQLTableEditor
                 $where = "$key = $value";
             }
 
-            if ($key != 'mte_a' && $key != 'mte_new_rec' && $key != 'option') {
+            if (($key != 'mte_a' && $key != 'mte_new_rec' && $key != 'option') && (!in_array($key, $this->fields_to_not_edit, true))) {
                 if ($in_mte_new_rec) {
-                    $insert_fields .= " `$key`,";
+                    $insert_fields .= "`$key`, ";
                     if ($key == $this->primary_key) {
-                        $insert_values .= " NULL ,";
+                        $insert_values .= "null, ";
                     } else {
-                        $insert_values .= " '" . addslashes(stripslashes($value)) . "',";
+                        $insert_values .= " '" . addslashes(stripslashes($value)) . "', ";
                     }
                 } else {
-                    $updates .= " `$key` = '" . addslashes(stripslashes($value)) . "' ,";
+                    $updates .= " `$key` = '" . addslashes(stripslashes($value)) . "', ";
                 }
             }
         }
@@ -744,17 +734,18 @@ class ClsMySQLTableEditor
         /* ===================================================================================================================== */
 
         // Remove trailing comma
-        $insert_fields = substr($insert_fields, 0, -1);
-        $insert_values = substr($insert_values, 0, -1);
-        $updates = substr($updates, 0, -1);
+        $insert_fields = substr($insert_fields, 0, -2);
+        $insert_values = substr($insert_values, 0, -2);
+        $updates = substr($updates, 0, -2);
 
         /* ===================================================================================================================== */
+
         if ($in_mte_new_rec) {
             # new record:
-            $sql = "INSERT INTO `$this->table` ($insert_fields) VALUES ($insert_values); ";
+            $sql = "INSERT INTO `$this->table` ($insert_fields) VALUES ($insert_values);";
         } else {
             # edit record:
-            $sql = "UPDATE `$this->table` SET $updates WHERE $where LIMIT 1; ";
+            $sql = "UPDATE `$this->table` SET $updates WHERE $where LIMIT 1;";
         }
         /* ===================================================================================================================== */
 
@@ -770,9 +761,9 @@ class ClsMySQLTableEditor
             $_SESSION['content_saved'] = $saved_id;
 
             if ($in_mte_new_rec) {
-                $this->RecordAddSaveScript = "window.location='?start=0&f=&sort=" . $this->primary_key . "&ad=d'";
+                $this->RecordAddSaveScript = 'setTimeout(function() {window.location="' . $_SESSION['hist_page'] . 'start=0&f=&sort=' . $this->primary_key . '&ad=d";}, 500);';
             } else {
-                $this->RecordAddSaveScript = "window.location='" . $_SESSION['hist_page'] . "'";
+                $this->RecordAddSaveScript = 'setTimeout(function() {window.location="' . $_SESSION['hist_page'] . '";}, 500);';
             }
         } else {
             $this->content_error = "Problem Encountered Saving Record";

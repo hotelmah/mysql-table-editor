@@ -21,7 +21,7 @@
 
             <div class="FrmAddEditButtons">
                 <input type="reset" value="Reset this form"/>
-                <input type="button" onclick="goBackToIndex();" value="Cancel" {text id="Disabled"} />
+                <input type="button" onclick='goBackToIndex("{text id="TableNameNoExt"}");' value="Cancel" {text id="Disabled"} />
                 <input type="submit" name="FrmEditTable" value="Save"/>
                 <input type="hidden" name="TableName" value="{text id="TableName"}"/>
             </div>
